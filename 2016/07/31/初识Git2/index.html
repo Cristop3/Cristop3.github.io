@@ -1,0 +1,396 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="John Doe">
+  
+  
+  
+  
+    <meta name="description" content="撤销修改（撤销修改中分几种情况：1.文件在工作区作修改撤销 2.文件add到缓存区后作修改撤销  不论在哪个阶段 执行命令后 都将回退到git commit 或 git add 或 工作区之前的状态）
+
+1$ git checkout --file文件
+
+撤销修改2（将缓存区的文件回退至工作区）
+
+1$ git reset HEAD file文件 其中git reset有回退版本的意思 还有...">
+  
+  <title>初识Git2 [ Caristop3 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2016/07/31/hello-world/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        Hello World
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Caristop3</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/stiekel/hexo-theme-random">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>初识Git2</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-31</span>
+      
+        <span id = "post-title-updated">Updated at 2016-07-31</span>
+      
+      
+      
+    </p>
+    
+    <ul>
+<li>撤销修改<br>（撤销修改中分几种情况：1.文件在工作区作修改撤销 2.文件add到缓存区后作修改撤销  不论在哪个阶段 执行命令后 都将回退到git commit 或 git add 或 工作区之前的状态）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout --file文件</div></pre></td></tr></table></figure>
+<ul>
+<li>撤销修改2<br>（将缓存区的文件回退至工作区）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git reset HEAD file文件 其中git reset有回退版本的意思 还有将缓存区的文件退回至工作区 其中HEAD表示当前文件 具体跟版本回退差不多</div></pre></td></tr></table></figure>
+<ul>
+<li>删除文件 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git rm file文件名</div></pre></td></tr></table></figure>
+<p>（当在工作区删除了文件时 想要恢复 即可用使用$ git checkout –file文件名 则它会从版本库中复制一份到工作区来；当在版本库中执行了删除文件时此时需要再次执行一次commit）<br><img src="http://img.blog.csdn.net/20160731183644719" alt="这里写图片描述"> </p>
+<ul>
+<li>在github上创建仓库并且关联到本地库<br>（登录到你的github并且创建个仓库 名字取与本地库名字一致）<br>在你的本地库文件目录下运行git bash并键入下面的命令行进行关联</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin git@github.com:Cristop3/RowanIT3.git</div></pre></td></tr></table></figure>
+<p>（其中默认的远程库名称为origin,第一次进行关联后使用- u 将本地版本库中所有文件提交到github进行托管）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
+<p>（其中 origin表示远程库名；master表示在远程库下的主分支文件均提交至该分支下面）<br><img src="http://img.blog.csdn.net/20160731185122756" alt="这里写图片描述"> </p>
+<p>（到此以后你在本地版本库中修改的文件均可以通过$ git push origin master提交至在github远程库中）<br><img src="http://img.blog.csdn.net/20160731185726947" alt="这里写图片描述"> </p>
+<p>（简单的查看远程库情况）<br><img src="http://img.blog.csdn.net/20160731190302355" alt="这里写图片描述"></p>
+<ul>
+<li>在远程库上克隆项目 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone &lt;github url地址&gt;</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160731185518040" alt="这里写图片描述"> </p>
+<ul>
+<li>分支<br>（创建一个新的分支 其中- b 的意思是创建一个新分支并切换至该分支下进行操作）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout -b 分支名</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160731185952620" alt="这里写图片描述"> </p>
+<p>（查看当前库下的分支情况 其中有个*号的表示当前正在该分支下面）<br><img src="http://img.blog.csdn.net/20160731190114370" alt="这里写图片描述">  </p>
+<p>（合并分支 当进行团队开发时一般不在master分支上进行开发 都是在主分支下进行创建新的分支 最后进行分支合并）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git merge 分支名</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160731190703326" alt="这里写图片描述"> </p>
+<p>（删除分支 在进行合并后可以执行该命令把分支删除）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git branch -d 分支名</div></pre></td></tr></table></figure>
+<p>（切换分支 执行命令进行分支间的切换）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout 分支名</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160731191303988" alt="这里写图片描述"></p>
+<ul>
+<li>冲突问题<br>（当多人开发时 可能存在你修改提交 他人修改提交 这样就会产生冲突 在对应的文件中会产生异样提示在某些地方进行了冲突 标记了不同分支的内容 在进行修改后提交）<br><img src="http://img.blog.csdn.net/20160731191721993" alt="这里写图片描述"> </li>
+</ul>
+<p>（也可以查看分支冲突解决详情）<br><img src="http://img.blog.csdn.net/20160731191937121" alt="这里写图片描述"> </p>
+<ul>
+<li>获取最新<br>（为了避免冲突 我们可以先获取到最新再进行修改提交操作）</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git pull</div></pre></td></tr></table></figure>
+<p><img src="http://img.blog.csdn.net/20160731192410534" alt="这里写图片描述"> </p>
+<blockquote>
+<p>到此Git的基本知识也算是说完了 不过总体是参考廖雪峰老师的博文来写的 其实还有更多更强大的功能等我们去研究 做技术的就是要不停的学习研究 我相信我能成为大神 哦 对了 我有新博客了是基于Hexo+Github Page搭建的 还在进行试验中 有兴趣来瞧瞧 共同学习 加油…..<br>Cristop3.github.io</p>
+</blockquote>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2016/07/31/hello-world/" class="next">Next post Hello World &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by John Doe using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg">
+    <p id="description">this is my Blog on Hexo+GithubPage</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/stiekel/hexo-theme-random">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://coding.net/u/Stiekel">
+        
+          <i class="icon iconfont coding">&#xe607;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://twitter.com/SidCN">
+        
+          <i class="icon iconfont twitter">&#xe600;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/sidcn">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.douban.com/people/Stiekel/">
+        
+          <i class="icon iconfont douban">&#xe609;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
