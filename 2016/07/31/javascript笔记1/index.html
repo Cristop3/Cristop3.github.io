@@ -1,0 +1,366 @@
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="">
+<head>
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <meta name="author" content="John Doe">
+  
+  
+  
+  
+    <meta name="description" content="javascript变量、运算符、语句
+  ①能被转化为布尔值false的值有:{undefined、null、0、-0、NAN、””};其他的包括所有对象(数组、函数)都将被转化为true
+ ②包装对象:在存取字符串、数字或者布尔值的属性时所创建的临时对象称为包装对象。例如：String()\Number()\Boolean()等构造函数来显示创建包装对象
+ ③parseInt(xxx)-...">
+  
+  <title>javascript变量、运算符、语句 [ Caristop3 ]</title>
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+  <link rel="stylesheet" href="/css/random.css">
+<link rel="stylesheet" href="/css/vegas.min.css">
+<link rel="stylesheet" href="/css/highlight-railscasts.css">
+<link rel="stylesheet" href="/css/jquery.fancybox.css">
+<link rel="stylesheet" href="/css/iconfont/iconfont.css">
+<link rel="stylesheet" href="/css/jquery.fancybox-thumbs.css">
+<link rel="stylesheet" href="/css/plyr.css">
+  
+</head>
+
+<body>
+<div class="side-navigate hide-area">
+  
+  
+    <div class="item next">
+      <a href="/2016/07/31/初识Git2/">
+        <div class="item-icon"></div>
+      </a>
+      <div class="item-title">
+        初识Git2
+      </div>
+    </div>
+  
+</div>
+<div id="outer-container" class="hide-area">
+<div id="container">
+  <div id="menu-outer" class="slide-down">
+    <div id="menu-inner">
+      <div id="brand">
+        
+        <a onClick="openUserCard()">
+          <img id="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg"/>
+          <div id="homelink">Caristop3</div>
+        </a>
+      </div>
+      <div id="menu-list">
+        <ul>
+        
+        
+          
+            <li>
+          
+            <a href="/index.html">Home</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/archives">Archives</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/tags">Tags</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/categories">Categories</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="/about">About</a>
+            
+          </li>
+        
+          
+            <li>
+          
+            <a href="https://github.com/stiekel/hexo-theme-random">Github</a>
+            
+          </li>
+        
+        </ul>
+      </div>
+      <div id="show-menu">
+        <button>Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="content-outer">
+    <div id="content-inner">
+      
+      
+  <article id="post">
+    <h1>javascript变量、运算符、语句</h1>
+    <p class="page-title-sub">
+      <span id = "post-title-date">Created at 2016-07-31</span>
+      
+        <span id = "post-title-updated">Updated at 2016-08-10</span>
+      
+      
+      
+    </p>
+    
+    <ul>
+<li><p>javascript变量、运算符、语句</p>
+<p>  ①<strong>能被转化为布尔值false的值有</strong>:{undefined、null、0、-0、NAN、””};其他的包括所有对象(数组、函数)都将被转化为true</p>
+<p> ②<strong><em>包装对象</em></strong>:在存取字符串、数字或者布尔值的属性时所创建的临时对象称为包装对象。例如：String()\Number()\Boolean()等构造函数来显示创建包装对象</p>
+<p> ③parseInt(xxx)-解析数字为整数 || parseFloat(xxx)-解析数字为浮点数{两者都将忽略前导0，若第一个为非数字则解析为NAN}</p>
+<p> ④<strong>静态语言</strong>：编译时必须指定变量的数据类型如c、c++、java、c#等..</p>
+<pre><code>**动态语言**：在第一次复制时指定变量的数据类型如Ruby、python、js等
+</code></pre><p> ⑤在javascript中当未使用var来声明一个变量时，使用delete操作符可以删除变量；相反，当使用var时该变量不能被delete操作符进行删除</p>
+<p> ⑥javascript的优先级和结合性:js中表达式的运算是按照从左至右的顺序。<br> <code>例:b=(a++)+a 当a=1时 首先计算b,再计算(a++),此时a还是1 最后计算a 最终将两者相加赋值给b,因此b=3</code><br> <code>例2:b=(++a)+a 当a=1时 首先计算b,再计算(++a),此时a值为2 最后计算a 最终将两者相加赋值给b,因此b=4</code></p>
+<p> ⑦<strong>算术运算符分类</strong>：加(+),减(-),乘(*),除(/),取余(%)</p>
+<p> ⑧在使用加(+)运算符时，它的转化规则会先考虑”字符串拼接”；若左右两操作数都不是类字符串的话则进行算术加法运算<br> <code>例：1+2+&quot;ljx&quot; --&gt; &quot;3ljx&quot; || 1+(2+&quot;ljx&quot;) --&gt; &quot;12ljx&quot;</code> </p>
+<p> ⑨字符串的比较是区分大小写的，所有大写的ASCII字母都”小于”小写的ASCII字母。其中比较运算符首先将操作数转化为数字然后再比较大小，若不能转换的为NAN<br> <code>例：&quot;11&quot;&gt;3 --&gt; true</code></p>
+<p> ①<strong>in运算符</strong>：它希望它的左操作数是一个字符串或者是可以转换为字符串的式子，而希望右操作数是一个对象，如果右侧对象拥有一个名为左操作数的属性名，则返回true<br> <code>例: var a=[7,8,9] &quot;0&quot; in a -在a中存在a[&quot;0&quot;]这个属性-&gt; true;&quot;1&quot; in a -在a中存在a[&quot;1&quot;]这个属性-&gt; true;&quot;3&quot; in a -在a中不存在a[&quot;3&quot;]-&gt; false</code></p>
+<p> ②<strong>instanceof运算符</strong>：它希望它的左操作数是一个对象，而右操作符为标识对象的类，若左侧对象是右侧类的实例，则返回true,否则返回false</p>
+<p> ③<strong>逻辑与(&amp;&amp;)特性</strong>：</p>
+<pre><code>&lt;1&gt;当左右操作数均为true时，返回true,当左右操作数有一方为false时返回false
+&lt;2&gt;左右操作数不一定是布尔值，也有一些被当做&quot;真值&quot;或&quot;假值&quot;
+*&lt;3&gt;短路特性:当左操作数计算结果为假值时，那么整个表达式一定是假，并且返回左操作数的计算值；当左操作数计算结果为真值时，则需要看右操作数的值，若右操作为假值则整个表达式为假，且返回右操作数的值    ;若右操作数为真值则整个表达式为真，且返回右操作数的值 
+`例：if(a==b) stop(); 等价于 a==b &amp;&amp; stop()` 
+</code></pre><p> ④<strong>eval</strong>:解释运行由javascript源代码所组成的字符串，并产生一个值；<strong>eval()</strong>只含一个参数，如果传入的参数不是字符串，它将直接返回这个参数；如果是字符串，它会将该字符串当初javascript代码进行编译 </p>
+<p> ⑤<strong>delete一元操作符</strong>:它用来删除对象属性或者数组元素，但用户通过var语句所声明的变量、由function语句定义的函数和函数参数不能删除<br> <code>例:var a = [1,2,3]; delete a[1] 此时console.log(a) -&gt;得到a[1,3] 但是a.length却为3 意思是数组的长度不变 只是原来被删除的位置被undefined占了罢了</code></p>
+<p> ⑥<strong>利用for-in 循环来将对象中的属性复制到一个数组中</strong><br> <code>例：var o={x:1,y:2,z:3} var a=[],i=0; for(a[i++] in o); console.log(a) --&gt; a[&quot;x&quot;,&quot;y&quot;,&quot;z&quot;]</code></p>
+<p> ⑦return语句只能在函数体内出现;break、continue只能在循环体内出现</p>
+<p> ⑧<strong>“use strict”语句</strong>：在代码前使用该指令，则此段代码将会以严格模式执行，比如其中调用函数(不是方法)中的一个this值将会得到undefined–(在非严格模式下，调用的函数中的this值总是指向全局对象) <code>使用这段代码来检测是否是在严格模式下：var subClass=(function(){&quot;use strict&quot;;return this===undefined}());</code></p>
+</li>
+</ul>
+
+  </article>
+  <div class="random-toc-area">
+  <button class="btn-hide-toc btn-hide-toc-show" style="display: none" onclick="TOCToggle()">Show TOC</button>
+  <button class="btn-hide-toc btn-hide-toc-hide" onclick="TOCToggle()">Hide TOC</button>
+  <div class="random-toc">
+    <h2>Table of Content</h2>
+    
+  </div>
+</div>
+
+  
+<nav id="pagination">
+  
+
+  
+
+  
+    <a href="/2016/07/31/初识Git2/" class="next">Next post 初识Git2 &rarr;</a>
+  
+</nav>
+
+  <!-- JiaThis Button BEGIN -->
+
+<!-- JiaThis Button END -->
+
+
+      
+      
+      
+    </div>
+  </div>
+
+  <div id="bottom-outer">
+    <div id="bottom-inner">
+      Site by John Doe using
+      <a href="http://hexo.io">Hexo</a> & <a href="https://github.com/stiekel/hexo-theme-random">Random</a>
+      <br>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
+<div id="user-card">
+  <div class="center-field">
+    <img class="avatar" src="http://7te9fe.com1.z0.glb.clouddn.com/default_avatar.jpg">
+    <p id="description">this is my Blog on Hexo+GithubPage</p>
+    <ul class="social-icon">
+  
+  
+    <li>
+      <a href="https://github.com/stiekel/hexo-theme-random">
+        
+          <i class="icon iconfont github">&#xe606;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://coding.net/u/Stiekel">
+        
+          <i class="icon iconfont coding">&#xe607;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="https://twitter.com/SidCN">
+        
+          <i class="icon iconfont twitter">&#xe600;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://weibo.com/sidcn">
+        
+          <i class="icon iconfont weibo">&#xe602;</i>
+        
+      </a>
+    </li>
+  
+    <li>
+      <a href="http://www.douban.com/people/Stiekel/">
+        
+          <i class="icon iconfont douban">&#xe609;</i>
+        
+      </a>
+    </li>
+  
+</ul>
+  </div>
+</div>
+
+
+<div id="btn-view">Hide</div>
+
+<script>
+// is trigger analytics / tongji script
+var isIgnoreHost = false;
+
+if(window && window.location && window.location.host) {
+  isIgnoreHost = ["localhost","127.0.0.1"].some(function(address){
+    return 0 === window.location.host.indexOf(address);
+  });
+}
+
+var isTriggerAnalytics = !( true && isIgnoreHost );
+
+</script>
+
+
+
+
+  
+  
+    <script src="/js/jquery-2.2.3.min.js"></script>
+  
+    <script src="/js/vegas.min.js"></script>
+  
+    <script src="/js/random.js"></script>
+  
+    <script src="/js/highlight.pack.js"></script>
+  
+    <script src="/js/jquery.mousewheel.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox.pack.js"></script>
+  
+    <script src="/js/jquery.fancybox-thumbs.js"></script>
+  
+    <script src="/js/plyr.js"></script>
+  
+
+<script>
+
+  // fancybox
+  var backgroundImages = [];
+  
+  $('#post').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox') || $(this).parent().hasClass('fancybox-thumb')) return;
+      var alt = this.alt || this.title;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'post' + i);
+    });
+  });
+  $(".fancybox").fancybox();
+
+var vegasConfig = {"preload­Image":true,"transition":["slideLeft2","slideRight2","flash2"],"timer":true,"delay":5000,"shuffle":true,"count":28};
+var unsplashConfig = {"gravity":"north"};
+// is show background images
+var turnoffBackgroundImage = false;
+
+
+
+  turnoffBackgroundImage = true;
+
+
+var backgroundColor = "D7CCC8";
+
+$(".fancybox-thumb").fancybox({
+  prevEffect: 'none',
+  nextEffect: 'none',
+  helpers: {
+    title: {
+      type: 'outside'
+    },
+    thumbs: {
+      width: 50,
+      height: 50
+    }
+  }
+});
+
+// show video with plyr
+$(".video-container iframe").each(function(i){
+  var url = $(this).attr('src');
+  var id = url.split('/').pop();
+  var plyrContainer = document.createElement('div');
+  plyrContainer.className = 'plyr';
+  var plyrElement = document.createElement('div');
+  plyrElement.dataset.videoId = id;
+  switch(true) {
+    case url.search('youtube.com') >= 0:
+      plyrElement.dataset.type = 'youtube';
+      break;
+    case url.search('vimeo.com') >= 0:
+      plyrElement.dataset.type = 'vimeo';
+      break;
+    default:
+      return;
+  };
+  plyrContainer.appendChild(plyrElement);
+  $(this).parent().html(plyrContainer);
+});
+plyr.setup('.plyr', {iconUrl: '/css/sprite.svg'});
+</script>
+</body>
+</html>
+
